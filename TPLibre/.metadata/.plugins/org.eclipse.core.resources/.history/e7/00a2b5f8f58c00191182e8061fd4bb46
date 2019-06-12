@@ -1,0 +1,12 @@
+package produit;
+
+public class Produit {
+	
+	private int id;
+	private String libelle;
+	private float prix;
+	private int quantiteDisponible;
+	
+	
+
+}

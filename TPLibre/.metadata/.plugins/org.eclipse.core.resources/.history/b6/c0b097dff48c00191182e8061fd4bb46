@@ -1,0 +1,10 @@
+package magasin;
+
+import java.util.HashMap;
+
+public class ServiceAchat {
+	
+	public void achatProduit(HashMap<Produit, Integer> produits){
+		System.out.println("Achat de produit !");
+	}
+}

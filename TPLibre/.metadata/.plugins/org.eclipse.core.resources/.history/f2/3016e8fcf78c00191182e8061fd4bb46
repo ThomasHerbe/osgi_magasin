@@ -1,0 +1,39 @@
+package magasin;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import produit.Produit;
+
+public class ServiceAchat {
+
+	List<Produit> produits = new ArrayList<>();
+	
+	
+	
+	public ServiceAchat(List<Produit> produits) {
+		super();
+		this.produits = produits;
+		produits.add(new Produit(1, "Chips", 2, 2));
+		produits.add(new Produit(2, "Pate", 40, 50));
+	}
+
+	public ServiceAchat() {
+		super();
+		produits.add(new Produit(1, "Chips", 2, 2));
+		produits.add(new Produit(2, "Pate", 40, 50));
+	}
+
+
+
+	public void achatProduit(HashMap<Produit, Integer> produits) {
+		System.out.println("Achat de " + produits.size() + " produit ");
+	}
+	
+	public List<Produit> obtenirCatalogue(){
+		System.out.println("Envoie du catalogue");
+		
+		return new ;
+	}
+}

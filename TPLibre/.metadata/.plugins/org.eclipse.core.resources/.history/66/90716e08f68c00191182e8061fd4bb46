@@ -1,0 +1,17 @@
+package magasin;
+
+import java.util.HashMap;
+import java.util.List;
+
+public class ServiceAchat {
+
+	public void achatProduit(HashMap<Produit, Integer> produits) {
+		System.out.println("Achat de " + produits.size() + " produit ");
+	}
+	
+	public List<Produit> obtenirCatalogue(){
+		System.out.println("Envoie du catalogue");
+		
+		return null;
+	}
+}
