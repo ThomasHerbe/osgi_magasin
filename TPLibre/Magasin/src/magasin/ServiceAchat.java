@@ -3,35 +3,60 @@ package magasin;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
 
 import exception.QuantiteInsuffisanteException;
 import produit.Produit;
 
-public class ServiceAchat {
+public class ServiceAchat extends Observable {
 
 	List<Produit> catalogue = new ArrayList<>();
 
 	public ServiceAchat() {
 		super();
-		catalogue.add(new Produit(1, "Chips", 2, 2));
-		catalogue.add(new Produit(2, "Pate", 40, 50));
+		ajouterProduitAuCatalogue(new Produit(1, "Chips", 2, 2));
+		ajouterProduitAuCatalogue(new Produit(2, "Pate", 40, 50));
 	}
 
-	public void achatProduit(HashMap<Produit, Integer> produits) throws QuantiteInsuffisanteException {
+	public void achatProduit(int idClient, HashMap<Produit, Integer> produits) throws QuantiteInsuffisanteException {
+		verificationQuantiteProduits(produits);
+		miseAJourDesStocks(produits, idClient);
+		changementDuCatalogue();
+	}
+
+	private void miseAJourDesStocks(HashMap<Produit, Integer> produits,int idClient) {
+		StringBuilder resultatCommande = new StringBuilder("[" + idClient + "] Nouvelle commande\n");
+		for (Produit produit : this.catalogue) {
+			if (produits.containsKey(produit)) {
+				int quantite = produits.get(produit);
+				resultatCommande.append("\t[" + quantite + "] " + produit.getLibelle() + " - " + Math.round((float) quantite * produit.getPrix()) + " €");
+				produit.setQuantiteDisponible(produit.getQuantiteDisponible() - quantite);
+			}
+		}
+		System.out.println(resultatCommande.toString());
+	}
+	
+	public void verificationQuantiteProduits(HashMap<Produit, Integer> produits) throws QuantiteInsuffisanteException {
 		for (Produit produit : this.catalogue) {
 			if (produits.containsKey(produit)) {
 				int quantite = produits.get(produit);
 				if (quantite > produit.getQuantiteDisponible()) {
-					System.out.println("y en a pas assez");
-					throw new QuantiteInsuffisanteException();
+					throw new QuantiteInsuffisanteException("Pas assez de quantité pour le produit suivant : " + produit.getLibelle());
 				}
-				produit.setQuantiteDisponible(produit.getQuantiteDisponible() - quantite);
 			}
 		}
 	}
+	
+	public void ajouterProduitAuCatalogue(Produit produit) {
+		catalogue.add(produit);
+	}
+	
+	public void changementDuCatalogue() {
+		this.setChanged();
+		this.notifyObservers(catalogue);
+	}
 
 	public List<Produit> obtenirCatalogue() {
-		System.out.println("Envoie du catalogue");
 		return catalogue;
 	}
 }

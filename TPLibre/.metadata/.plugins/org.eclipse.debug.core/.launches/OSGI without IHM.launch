@@ -117,5 +117,5 @@
 <booleanAttribute key="tracing" value="false"/>
 <booleanAttribute key="useCustomFeatures" value="false"/>
 <booleanAttribute key="useDefaultConfigArea" value="true"/>
-<stringAttribute key="workspace_bundles" value="Client@default:default,Magasin@default:default,Produit@default:default"/>
+<stringAttribute key="workspace_bundles" value="Client@2:true,Magasin@1:true,Produit@default:true"/>
 </launchConfiguration>

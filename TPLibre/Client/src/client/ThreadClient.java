@@ -34,15 +34,23 @@ public class ThreadClient extends Thread {
 	 * Méthode run qui sera appelée par the Thread.start()
 	 */
 	public void run() {
-		commander();
+		try {
+			commander();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
 	 * Implémentation des Traitements du Thread
 	 * 
+	 * @throws InterruptedException
+	 * 
 	 * @throws InvalidSyntaxException
 	 */
-	private void commander() {
+	private void commander() throws InterruptedException {
 		// Récupération du service
 		ServiceReference<ServiceAchat> serviceAchatServiceReference = context.getServiceReference(ServiceAchat.class);
 		ServiceAchat serviceAchat = context.getService(serviceAchatServiceReference);
@@ -51,17 +59,15 @@ public class ThreadClient extends Thread {
 		Client client1 = new Client();
 		Client client2 = new Client();
 
-		HashMap<Produit, Integer> commande = new HashMap<>();
-		commande.put(catalogue.get(0), 1);
-		
-		try {
-			serviceAchat.achatProduit(commande);
-		} catch (QuantiteInsuffisanteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		serviceAchat.addObserver(client1);
+		serviceAchat.addObserver(client2);
+
+		while (true) {
+			client1.passerCommande(serviceAchat);
+			Thread.sleep(5000);
+			client2.passerCommande(serviceAchat);
+			Thread.sleep(5000);
 		}
-		catalogue = serviceAchat.obtenirCatalogue();
-		System.out.println(catalogue);
 	}
 
 }

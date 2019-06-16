@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Magasin
+Bundle-SymbolicName: Magasin
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: magasin.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: client,
+ org.osgi.framework;version="1.3.0",
+ produit
+Bundle-ActivationPolicy: lazy
+Export-Package: exception,
+ magasin

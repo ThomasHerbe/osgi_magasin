@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract method &apos;private void miseAJourDesStocks(HashMap&lt;Produit,Integer&gt; produits, StringBuilder commandResult)&apos; from &apos;magasin.ServiceAchat.achatProduit()&apos; to &apos;magasin.ServiceAchat&apos;&#x0D;&#x0A;- Original project: &apos;Magasin&apos;&#x0D;&#x0A;- Method name: &apos;miseAJourDesStocks&apos;&#x0D;&#x0A;- Destination type: &apos;magasin.ServiceAchat&apos;&#x0D;&#x0A;- Declared visibility: &apos;private&apos;" comments="false" description="Extract method &apos;miseAJourDesStocks&apos;" destination="0" exceptions="false" flags="786434" id="org.eclipse.jdt.ui.extract.method" input="/src&lt;magasin{ServiceAchat.java" name="miseAJourDesStocks" replace="false" selection="843 356" stamp="1560705497236" version="1.0" visibility="2"/>
+</session>

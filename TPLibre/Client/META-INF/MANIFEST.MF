@@ -10,3 +10,4 @@ Import-Package: exception,
  org.osgi.framework;version="1.3.0",
  produit
 Bundle-ActivationPolicy: lazy
+Export-Package: client
